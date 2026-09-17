@@ -1,0 +1,45 @@
+# Puzzle-arcade catalog — each game maps to a GitHub issue (todo).
+# Status: planned | in_progress | active
+version: 2
+
+hub: browser-games
+browser_target: chrome
+category: static
+
+issue_label: game
+issue_milestone: null
+
+# Focus: the three daily pillars. Other games are tracked as issues (backlog).
+games:
+  sudoku:
+    title: Sudoku
+    slug: sudoku
+    status: planned
+    priority: high
+    github_issue: null
+    description: Classic 9×9 grids — generator + auto-solve, notes, check, reveal.
+    frontend_route: /play/sudoku
+    tags: [grid, logic, offline, newspaper, click]
+    requirements: docs/REQUIREMENTS.md#sudoku
+
+  logic-puzzles:
+    title: Logic Grid
+    slug: logic-puzzles
+    status: planned
+    priority: high
+    github_issue: null
+    description: Grid deduction — categories, clues, green-check marking (the phrases game).
+    frontend_route: /play/logic-puzzles
+    tags: [grid, logic, offline, newspaper, click]
+    requirements: docs/REQUIREMENTS.md#logic-puzzles
+
+  crosswords:
+    title: Crosswords
+    slug: crosswords
+    status: planned
+    priority: high
+    github_issue: null
+    description: Clue list plus grid — solver-first with a curated puzzle bank.
+    frontend_route: /play/crosswords
+    tags: [word, grid, offline, newspaper, click]
+    requirements: docs/REQUIREMENTS.md#crosswords
