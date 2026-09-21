@@ -1,52 +1,61 @@
-# browser-games
+# games
 
-Front-end only browser games with a Rust + WASM focus — like the puzzle rack at a newsstand, but ephemeral. The **launcher** is the home page: one game selector that drops you into any game. No backend, no database, no accounts — state lives in the browser and disappears when you close the tab. Rust-first, no TypeScript outside the launcher.
+Games in **all deployable forms** — the same puzzles (sudoku · logic-grid · crosswords) rendered per platform. No backend, no database, no accounts.
 
-## Focus
+## 🚀 Deployables
 
-Three daily pillars:
+| Folder | Platform | Renderer |
+| --- | --- | --- |
+| [`browser/`](browser) | web (GitHub Pages) | Rust + WebAssembly |
+| [`windows/`](windows) | native Windows | Godot |
+| [`unix/`](unix) | native Linux / macOS | Godot |
 
-- **Sudoku** — generator + auto-solve.
-- **Logic grid** — grid deduction with green-check marking (the phrases game).
-- **Crosswords** — solver-first with a curated puzzle bank.
+The folder names are **platforms**; the engine is an implementation detail.
 
-Other game ideas live as issues, not in the active catalog. See [docs/ADD-A-GAME.md](docs/ADD-A-GAME.md) for the add-a-game boilerplate.
+## 🧩 Shared
 
-## Structure
+- [`catalog/`](catalog) — `games.yaml` (the source of truth) + tags.
+- [`data/`](data) — per-game puzzle banks.
+- [`assets/`](assets) — submodule ([`kapetim/assets`](https://github.com/kapetim/assets)): images · fonts · audio, shared with the other deployables and `data-science`.
+
+## 🗂️ Structure
 
 ```text
-src/
-  rust/            Rust workspace
-    engines/       wasm32 crates (single-threaded, canvas) — sudoku · logic-grid · crosswords
-  frontend/
-    launcher/      React + TS (the only TS UI) — game selector
-  catalog/         games.yaml (the roadmap) + tags
-  data/            per-game static datasets
-docs/              GAMES / GOALS / REQUIREMENTS
+catalog/            games.yaml + tags
+data/               per-game static datasets
+browser/            web deployable
+  rust/             Rust workspace (wasm32 engines)
+  frontend/         React + TS launcher
+windows/            native Windows deployable (Godot)
+unix/               native Unix deployable (Godot)
+assets/             shared assets submodule
+docs/               GAMES / GOALS / REQUIREMENTS
 ```
 
-## Games
+## 🎮 Games
 
-The catalog (`src/catalog/games.yaml`) is the source of truth — the active games are the three pillars, each mapped to a `/play/<slug>` route:
+The catalog ([`catalog/games.yaml`](catalog/games.yaml)) is the source of truth — the three pillars, each mapped to a `/play/<slug>` route:
 
 | Game | Route |
-|---|---|
+| --- | --- |
 | Sudoku | `/play/sudoku` |
 | Logic Grid | `/play/logic-puzzles` |
 | Crosswords | `/play/crosswords` |
 
-Other game ideas (n-queens, numerox, tango, chess, checkers, nonogram, and others) are tracked as issues — see `docs/GAMES.md`.
+Other game ideas live as issues — see [`docs/GAMES.md`](docs/GAMES.md). Add-a-game boilerplate: [`docs/ADD-A-GAME.md`](docs/ADD-A-GAME.md).
 
-## Quick start
+## ⚡ Quick start
 
 ```bash
-npm --prefix src/frontend/launcher run dev
+# assets (submodule)
+git submodule update --init --recursive
+
+# browser deployable
+npm --prefix browser/frontend/launcher run dev
 cargo build --workspace -p sudoku -p logic-grid -p crosswords
 ```
 
-Deployed as a static site on GitHub Pages.
-
-## Docs
+## 📄 Docs
 
 - [`docs/GAMES.md`](docs/GAMES.md) — game issue roadmap
 - [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md) — game requirements

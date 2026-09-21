@@ -4,11 +4,11 @@ browser-games is a Rust-first monorepo. Adding a game follows a fixed pattern; t
 
 ## Steps
 
-1. **Catalog** — add/update the entry in `src/catalog/games.yaml` (title, slug, `/play/<slug>` route, status, tags).
-2. **WASM engine** — a Rust crate under `src/rust/engines/<slug>/` (wasm32 target) exposing the standard game contract (init → render → tick), rendering to canvas. Copy an existing engine crate as the starting boilerplate.
-3. **Launcher** — `src/frontend/launcher` routes to `/play/<slug>`; the catalog is the source of truth for the game list.
-4. **Backend** — endpoints under `src/rust/backend/games/` (fetch puzzle, submit score, leaderboard) as needed.
-5. **Data** — per-game data under `src/data/<slug>/`.
+1. **Catalog** — add/update the entry in `catalog/games.yaml` (title, slug, `/play/<slug>` route, status, tags).
+2. **WASM engine** — a Rust crate under `browser/rust/engines/<slug>/` (wasm32 target) exposing the standard game contract (init → render → tick), rendering to canvas. Copy an existing engine crate as the starting boilerplate.
+3. **Launcher** — `browser/frontend/launcher` routes to `/play/<slug>`; the catalog is the source of truth for the game list.
+4. **Backend** — endpoints under `browser/rust/backend/games/` (fetch puzzle, submit score, leaderboard) as needed.
+5. **Data** — per-game data under `data/<slug>/`.
 6. **Issue** — open a GitHub issue (label `game`) for the game logic, referencing the catalog entry.
 
 ## Keep it focused
